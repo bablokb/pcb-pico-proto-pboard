@@ -35,17 +35,19 @@ Pins on Raspberry Pi Pico
 |      EYESPI-INT)    |      |      |
 
 
-- GP26 per Jumper auf EYESPI-3 (BUSY) oder EYESPI (BL) führen
-
-
 Pins on EYESPI
 --------------
+
+Use the onboard jumper-pad to select between
+backlight and busy. TFT-displays use the backlight-pin while
+e-paper displays use the busy-pin.
+
 
 | Pin | Func    | Mapped to
 |-----|---------|-------------------------|
 |   1 | GPIO2   | n.c.
 |   2 | GPIO1   | n.c.
-|   3 | BUSY    | GP26 (alt)
+|   3 | BUSY    | GP26 (alternative)
 |   4 | INT     | GP15
 |   5 | SDA     | GP12
 |   6 | SCL     | GP13
