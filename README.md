@@ -20,11 +20,14 @@ Some supported components:
   - passive buzzer
   - MAX98357A (I2S mono-amplifier)
   - button-breakout (3xbutton, 1xGND)
-  - RTC-socket (for <https://github.com/bablokb/pcb-pico-pcf8563.git>
+  - RTC-socket (for this PCB: <https://github.com/bablokb/pcb-pico-pcf8563.git>)
   - Adafruit TPL5110 power-switch breakout
   - SD-card socket (on-board)
   - JST-PH2 battery connector
   - JST-PH3 connector (ADC)
+
+Note that some components share pins, so it is *not possible* to use
+all components in parallel! See [pinout](./pins.md) for details.
 
 ![](pboard+components.jpg)
 
