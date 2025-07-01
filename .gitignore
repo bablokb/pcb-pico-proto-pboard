@@ -1,13 +1,9 @@
-# For PCBs designed using KiCad: http://www.kicad-pcb.org/
-# Format documentation: http://kicad-pcb.org/help/file-formats/
-
 # Temporary files
 *.000
 *.bak
 *.bck
 *.lck
-*.kicad_pcb-bak
-*sch-bak
+*.kicad*-bak
 *~
 _autosave-*
 *.tmp
@@ -21,6 +17,10 @@ work
 TODO
 
 boot_out.txt
+*.pyc
+*secrets.py
+config.py
+__pycache__
 lib
 
 *.gcode
