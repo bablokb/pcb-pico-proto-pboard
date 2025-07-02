@@ -96,7 +96,7 @@ def oled_display(width=128,height=64,address=0x3c,**kwargs):
 # --- create EYESPI-display   ------------------------------------------------
 
 _spi_display = None
-def eyespi_display(driver,**kwargs):
+def eyespi_display(driver=None,**kwargs):
   """ return SPI-display,(create if necessary) """
   global _spi_display
   if not _spi_display:
@@ -105,7 +105,13 @@ def eyespi_display(driver,**kwargs):
                             command=EYESPI_DC,
                             chip_select=EYESPI_DSP_CS,
                             reset=EYESPI_RST)
-    _spi_display = driver(bus,**kwargs)
+    if driver:
+      _spi_display = driver(bus,**kwargs)
+    else:
+      from adafruit_st7789 import ST7789
+      _spi_display = ST7789(bus, width=320, height=240, rotation=270,
+                            backlight_pin=EYESPI_BL,
+                            brightness=0.6)
   return _spi_display
 
 # --- create I2C0-bus   ------------------------------------------------------
