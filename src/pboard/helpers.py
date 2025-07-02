@@ -13,6 +13,7 @@ def wait_for_console():
   """ wait for serial connection """
   import supervisor
   import board
+  import time
   while not supervisor.runtime.serial_connected:
     time.sleep(1)
   print(f"running on board {board.board_id}")
