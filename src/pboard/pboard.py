@@ -223,6 +223,23 @@ def tpl_poweroff():
   time.sleep(0.01)
   _done.value = False
 
+# --- create I2S audiobus and mute-pin   -------------------------------------
+
+_i2s = None
+_mute = None
+def i2s():
+  """ create I2S bus """
+  import audiobusio
+  import digitalio
+  global _i2s, _mute
+  if not _i2s:
+    # create bus
+    _i2s = audiobusio.I2SOut(I2S_BLK, I2S_WSEL, I2S_DATA) #  BLCK, WSEL, DATA
+    # create mute-pin and start unmuted
+    _mute = digitalio.DigitalInOut(I2S_MUTE)
+    _mute.switch_to_output(value=True)
+  return (_i2s,_mute)
+
 # --- mount SD-card   --------------------------------------------------------
 
 def mount_sd():
