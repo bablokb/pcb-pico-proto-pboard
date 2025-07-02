@@ -22,11 +22,7 @@ pboard.tpl_setup()
 
 # create display for console output
 displayio.release_displays()
-from adafruit_st7789 import ST7789
-display = pboard.eyespi_display(ST7789,
-                                width=320, height=240, rotation=270,
-                                backlight_pin=pboard.EYESPI_BL,
-                                brightness=0.6)
+display = pboard.eyespi_display()        # use default display
 
 # --- simulate work   --------------------------------------------------------
 

@@ -82,11 +82,7 @@ if use_oled:
   display = pboard.oled_display(rotation=180)
 else:
   print("BTN0 pressed, using EYESPI")
-  from adafruit_st7789 import ST7789
-  display = pboard.eyespi_display(ST7789,
-                           width=320, height=240, rotation=270,
-                           backlight_pin=pboard.EYESPI_BL,
-                           brightness=0.6)
+  display = pboard.eyespi_display()        # use default display
 
 # fetch center-position
 pos = helpers.pos_map(display)['C']
