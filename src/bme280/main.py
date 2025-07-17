@@ -11,8 +11,8 @@ from pboard import helpers
 
 # --- configuration   --------------------------------------------------------
 
-INTERVAL = 60
-DEEP_SLEEP = False
+INTERVAL = 20
+DEEP_SLEEP = True
 ALTITUDE_AT_LOCATION = 525
 
 # --- class SensorInfo   -----------------------------------------------------
@@ -25,7 +25,7 @@ class SensorInfo:
   def __init__(self):
     """ constructor """
 
-    self._start = time.monotonic()
+    self.start = time.monotonic()
     # display and UI
     displayio.release_displays()
     self._display = pboard.eyespi_display()
@@ -74,13 +74,14 @@ class SensorInfo:
   def update_ui(self):
     """ update UI with current values """
     print("{0:.1f},{1:0.1f},{2:0.1f},{3:0.1f}".format(
-      time.monotonic()-self._start,*self._data))
+      time.monotonic()-self.start,*self._data))
 
     for index, (lbl,unit) in enumerate([("Temp", "°C"),
                                         ("Hum", "%rH"),
                                         ("Pres", "hPa")]):
       self._display.root_group[index].text = (
         f"{lbl}: {self._data[index]:0.1f} {unit}")
+    self._display.refresh()
 
   # --- loop with light sleep   ----------------------------------------------
 
@@ -101,7 +102,9 @@ if DEEP_SLEEP:
   sensor_info.read_data()
   sensor_info.update_ui()
   displayio.release_displays()
-  time_alarm = alarm.time.TimeAlarm(monotonic_time=start+INTERVAL)
+  pboard._spi0.deinit()
+  time_alarm = alarm.time.TimeAlarm(
+    monotonic_time=sensor_info.start+INTERVAL)
   alarm.exit_and_deep_sleep_until_alarms(time_alarm)
 else:
   sensor_info.loop()
