@@ -157,14 +157,14 @@ def spi1(miso=MISO1):
 # --- create UART0   ---------------------------------------------------------
 
 _uart0 = None
-def uart0(gp01=False):
+def uart0(gp01=False,baudrate=115200):
   """ return uart0 (create if necessary) """
   global _uart0
   if not _uart0:
     if gp01:
-      _uart0 = busio.UART(SDA0, SCL0, baudrate=115200)
+      _uart0 = busio.UART(SDA0, SCL0, baudrate=baudrate)
     else:
-      _uart0 = busio.UART(TX0, RX0, baudrate=115200)
+      _uart0 = busio.UART(TX0, RX0, baudrate=baudrate)
   return _uart0
 
 # --- create RTC (with PCF8563)   --------------------------------------------
