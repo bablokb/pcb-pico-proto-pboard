@@ -57,10 +57,12 @@ def pos_map(display):
   """
   return {
     'NW': ((0.0,0.0),(0,               0)),
+    'N':  ((0.5,0.0),(display.width/2, 0)),
     'NE': ((1.0,0.0),(display.width,   0)),
     'W':  ((0.0,0.5),(0,               display.height/2)),
     'C':  ((0.5,0.5),(display.width/2, display.height/2)),
     'E':  ((1.0,0.5),(display.width,   display.height/2)),
     'SW': ((0.0,1.0),(0,               display.height)),
+    'S':  ((0.5,1.0),(display.width/2, display.height)),
     'SE': ((1.0,1.0),(display.width,   display.height)),
     }
